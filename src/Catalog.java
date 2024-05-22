@@ -37,7 +37,7 @@ public class Catalog {
         products.add(p);
     }
 
-    public void removeProduct(Product p) {
+    public void removeProduct(Product p) throws ProductNotFoundException {
         products.remove(p);
     }
 
