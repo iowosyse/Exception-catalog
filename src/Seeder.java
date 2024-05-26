@@ -29,8 +29,9 @@ public class Seeder {
             }
         }
 
+        int bound = possibleProducts.size();
         for (int i = 0; i < 10; i++) {
-            catalog.addProduct(possibleProducts.get(ran.nextInt(0,5)));
+            catalog.addProduct(possibleProducts.get(ran.nextInt(0,bound)));
         }
     }
 }
