@@ -6,6 +6,7 @@ public class Main {
         int opt;
         Seeder.start();
 
+
         do {
             System.out.println("Find products by:");
             System.out.println("1. ID");
