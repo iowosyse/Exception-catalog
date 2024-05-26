@@ -11,6 +11,13 @@ public class Product {
         this.description = description;
     }
 
+    public Product(String ID, String name, String price, String description) {
+        this.ID = Integer.parseInt(ID);
+        this.name = name;
+        this.price = Double.parseDouble(price);
+        this.description = description;
+    }
+
     public int getID() {
         return ID;
     }

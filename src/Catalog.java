@@ -37,14 +37,22 @@ public class Catalog {
         products.add(p);
     }
 
-    public void removeProduct(Product p) throws ProductNotFoundException {
-        products.remove(p);
+    public boolean removeProduct(Product p) throws ProductNotFoundException {
+        for (Product ps : products) {
+            if (p.equals(ps)){
+                products.remove(p);
+                return true;
+            }
+        }
+        throw new ProductNotFoundException();
     }
 
     public boolean removeProduct(String name) throws ProductNotFoundException {
         for (Product p : products) {
-            if (p.getName().equals(name))
+            if (p.getName().equals(name)) {
+                products.remove(p);
                 return true;
+            }
         }
 
         throw new ProductNotFoundException();
