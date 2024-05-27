@@ -1,5 +1,6 @@
-1, Mazapan, 5, Dulce de cacahuate
-2, Doritos, 18, Totopos sabor nacho
-3, Chicles, 22, Goma refrescante
-4, Chela, 20, Bebida alcoholica
-5, Coca-Cola, 18, Refresco sabor cola
+ID,name,price,description
+1,Mazapan,5,Dulce de cacahuate
+2,Doritos,18,Totopos sabor nacho
+3,Chicles,22,Goma refrescante
+4,Chela,20,Bebida alcoholica
+5,Coca-Cola,18,Refresco sabor cola

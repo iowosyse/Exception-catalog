@@ -3,6 +3,8 @@ public class Product {
     private String name;
     private double price;
     private String description;
+    //pasado de burger
+    private String[] headers;
 
     public Product(int ID, String name, double price, String description) {
         this.ID = ID;
@@ -16,6 +18,14 @@ public class Product {
         this.name = name;
         this.price = Double.parseDouble(price);
         this.description = description;
+    }
+
+    public void setHeaders(String[] headers) {
+        this.headers = headers;
+    }
+
+    public String[] getHeaders() {
+        return headers;
     }
 
     public int getID() {
@@ -52,6 +62,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("%s.%n%s: %s.", name, "Description", description);
+        return String.format("%-2s, %-10s, %-5s, %-20s%n%-2s, %-10s, %-5s, %-20s%n", "ID", "Name", "Price", "Description",
+                getID(), getName(), "$" + getPrice(), getDescription());
     }
 }

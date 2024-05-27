@@ -23,9 +23,9 @@ public class Catalog {
         throw new ProductNotFoundException();
     }
 
-    public Product findByDescription(String description) throws ProductNotFoundException{
+    public Product searchByDescription(String description) throws ProductNotFoundException {
         for (Product product : products) {
-            if (product.getDescription().equals(description)){
+            if (product.getDescription().contains(description)) {
                 return product;
             }
         }

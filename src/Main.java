@@ -1,8 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         int opt;
-        Seeder.start();
-
+        Seeder.fillCatalog();
 
         do {
             System.out.println("Find products by:");
@@ -19,8 +18,8 @@ public class Main {
                     try {
                         System.out.println("Enter the ID");
                         id = ConsoleReader.readInteger();
-                        System.out.println("You got : " + Seeder.catalog.findById(id));
-                        System.out.println();
+                        System.out.println("You got : ");
+                        System.out.println(Seeder.catalog.findById(id));
                     } catch (ProductNotFoundException e) {
                         System.out.println("-- That product does not exist --");
                         System.out.println();
@@ -30,8 +29,8 @@ public class Main {
                     try {
                         System.out.println("Enter the name");
                         name = ConsoleReader.readString();
-                        System.out.println("You got: " + Seeder.catalog.findByName(name));
-                        System.out.println();
+                        System.out.println("You got:");
+                        System.out.println(Seeder.catalog.findByName(name));
                     } catch (ProductNotFoundException e) {
                         System.out.println("-- That product does not exist --");
                         System.out.println();
@@ -41,8 +40,8 @@ public class Main {
                     try {
                         System.out.println("Enter the description");
                         description = ConsoleReader.readString();
-                        System.out.println("You got: " + Seeder.catalog.findByDescription(description));
-                        System.out.println();
+                        System.out.println("You got: ");
+                        System.out.println(Seeder.catalog.searchByDescription(description));
                     } catch (ProductNotFoundException e) {
                         System.out.println("-- That product does not exist --");
                         System.out.println();

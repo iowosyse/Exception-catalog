@@ -4,7 +4,7 @@ import java.util.*;
 public class Seeder {
     public static Catalog catalog = new Catalog();
 
-    public static void start() {
+    public static void fillCatalog() {
         Random ran = new Random();
         ArrayList<Product> possibleProducts = new ArrayList<>();
 
@@ -12,6 +12,8 @@ public class Seeder {
         String line;
         try {
             br = new BufferedReader(new FileReader("Products.csv"));
+            //No use at all
+            String[] headers = br.readLine().split(",");
 
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
