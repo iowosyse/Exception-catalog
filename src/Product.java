@@ -4,7 +4,6 @@ public class Product {
     private double price;
     private String description;
     //pasado de burger
-    private String[] headers;
 
     public Product(int ID, String name, double price, String description) {
         this.ID = ID;
@@ -18,14 +17,6 @@ public class Product {
         this.name = name;
         this.price = Double.parseDouble(price);
         this.description = description;
-    }
-
-    public void setHeaders(String[] headers) {
-        this.headers = headers;
-    }
-
-    public String[] getHeaders() {
-        return headers;
     }
 
     public int getID() {
