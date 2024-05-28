@@ -53,7 +53,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("%-2s, %-10s, %-5s, %-20s%n%-2s, %-10s, %-5s, %-20s%n", "ID", "Name", "Price", "Description",
+        return String.format("%-2s, %-10s, %-6s, %-20s%n%-2s, %-10s, %-6s, %-20s%n", "ID", "Name", "Price", "Description",
                 getID(), getName(), "$" + getPrice(), getDescription());
     }
 }

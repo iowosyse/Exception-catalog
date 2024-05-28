@@ -7,18 +7,28 @@ public class Seeder {
     public static void fillCatalog() {
         Random ran = new Random();
         ArrayList<Product> possibleProducts = new ArrayList<>();
+        HashMap<String, Integer> indexAttribute = new HashMap<>();
 
         BufferedReader br = null;
         String line;
+
         try {
             br = new BufferedReader(new FileReader("Products.csv"));
-            //No use at all
             String[] headers = br.readLine().split(",");
+
+            for (int i = 0; i < headers.length; i++) {
+                indexAttribute.put(headers[i], i);
+            }
+
+            int iID = indexAttribute.get("ID");
+            int iName = indexAttribute.get("name");
+            int iPrice = indexAttribute.get("price");
+            int iDescription = indexAttribute.get("description");
 
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
 
-                Product newProduct = new Product(row[0], row[1], row[2], row[3]);
+                Product newProduct = new Product(row[iID], row[iName], row[iPrice], row[iDescription]);
                 possibleProducts.add(newProduct);
             }
         } catch (IOException e) {
