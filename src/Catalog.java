@@ -3,6 +3,10 @@ import java.util.ArrayList;
 public class Catalog {
     private ArrayList<Product> products = new ArrayList<>();
 
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
     public Product findById(int id) throws ProductNotFoundException {
         for (Product product : products) {
             if (product.getID() == id){
@@ -13,7 +17,7 @@ public class Catalog {
         throw new ProductNotFoundException();
     }
 
-    public Product findByName(String name) throws ProductNotFoundException{
+    public Product findByName(String name) throws ProductNotFoundException {
         for (Product product : products) {
             if (product.getName().equals(name)){
                 return product;
