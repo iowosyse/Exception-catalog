@@ -8,9 +8,7 @@ public class Seeder {
         createFile(catalog);
         ArrayList<Product> products = readFile();
 
-        for (int i = 0; i < readFile().size(); i++) {
-            catalog.addProduct(products.get(i));
-        }
+        catalog.getProducts().addAll(products);
     }
 
     public static ArrayList<Product> readFile(){
