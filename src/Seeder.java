@@ -10,11 +10,9 @@ public class Seeder {
         ArrayList<Product> possibleProducts = new ArrayList<>();
         HashMap<String, Integer> indexAttribute = new HashMap<>();
 
-        BufferedReader br = null;
         String line;
 
-        try {
-            br = new BufferedReader(new FileReader("Products.csv"));
+        try (BufferedReader br = new BufferedReader(new FileReader("Products.csv"))){
             String[] headers = br.readLine().split(",");
 
             for (int i = 0; i < headers.length; i++) {
@@ -34,12 +32,6 @@ public class Seeder {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Binaries.txt"));
@@ -49,7 +41,7 @@ public class Seeder {
              DataInputStream dis = new DataInputStream(fis)
         ) {
             writeFile(bw, possibleProducts, dos);
-            readFile(dis);
+            readFile(dis, possibleProducts);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,31 +53,33 @@ public class Seeder {
     }
 
     //save for later
-    public static void readFile(DataInputStream dis) throws IOException {
+    public static void readFile(DataInputStream dis, ArrayList<Product> possibleProducts) throws IOException {
         //adds every product from possible products
         while (true) {
             try {
-                int id = dis.readInt();
-                double price = dis.readDouble();
+                for (Product p : possibleProducts) {
+                    int id = dis.readInt();
+                    double price = dis.readDouble();
 
-                short maxSize = dis.readShort();
-                byte[] nameBytes = new byte[maxSize];
+                    short maxSize = dis.readShort();
+                    byte[] nameBytes = new byte[maxSize];
 
-                for (int i = 0; i < maxSize; i++) {
-                    nameBytes[i] = dis.readByte();
+                    for (int i = 0; i < maxSize; i++) {
+                        nameBytes[i] = dis.readByte();
+                    }
+                    String name = new String(nameBytes, StandardCharsets.UTF_8);
+
+                    maxSize = dis.readShort();
+                    byte[] descriptionBytes = new byte[maxSize];
+
+                    for (int i = 0; i < maxSize; i++) {
+                        descriptionBytes[i] = dis.readByte();
+                    }
+                    String description = new String(descriptionBytes, StandardCharsets.UTF_8);
+
+                    Product newProduct = new Product(id, name, price, description);
+                    catalog.addProduct(newProduct);
                 }
-                String name = new String(nameBytes, StandardCharsets.UTF_8);
-
-                maxSize = dis.readShort();
-                byte[] descriptionBytes = new byte[maxSize];
-
-                for (int i = 0; i < maxSize; i++) {
-                    descriptionBytes[i] = dis.readByte();
-                }
-                String description = new String(descriptionBytes, StandardCharsets.UTF_8);
-
-                Product newProduct = new Product(id, name, price, description);
-                catalog.addProduct(newProduct);
             } catch (EOFException e) {
                 //when reaching end of file, exit the loop
                 break;
